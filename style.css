@@ -41,66 +41,156 @@ body {
   z-index: 1;
 }
 
-/* Game timer + animation */
 @keyframes timer {
   0% {
-    --timer: 20;
+    --timer: 50;
   }
-  5% {
-    --timer: 19;
+  3% {
+    --timer: 49;
+  }
+  6% {
+    --timer: 48;
+  }
+  8% {
+    --timer: 47;
   }
   10% {
-    --timer: 18;
+    --timer: 46;
   }
-  15% {
-    --timer: 17;
+  12% {
+    --timer: 45;
+  }
+  14% {
+    --timer: 44;
+  }
+  16% {
+    --timer: 43;
+  }
+  18% {
+    --timer: 42;
   }
   20% {
-    --timer: 16;
+    --timer: 41;
   }
-  25% {
-    --timer: 15;
+  22% {
+    --timer: 40;
+  }
+  24% {
+    --timer: 39;
+  }
+  26% {
+    --timer: 38;
+  }
+  28% {
+    --timer: 37;
   }
   30% {
-    --timer: 14;
+    --timer: 36;
   }
-  35% {
-    --timer: 13;
+  32% {
+    --timer: 35;
+  }
+  34% {
+    --timer: 34;
+  }
+  36% {
+    --timer: 33;
+  }
+  38% {
+    --timer: 32;
   }
   40% {
-    --timer: 12;
+    --timer: 31;
   }
-  45% {
-    --timer: 11;
+  42% {
+    --timer: 30;
+  }
+
+  44% {
+    --timer: 29;
+  }
+  46% {
+    --timer: 28;
+  }
+  48% {
+    --timer: 27;
   }
   50% {
-    --timer: 10;
+    --timer: 26;
   }
-  55% {
-    --timer: 9;
+  52% {
+    --timer: 25;
+  }
+  54% {
+    --timer: 24;
+  }
+  56% {
+    --timer: 23;
+  }
+  58% {
+    --timer: 22;
   }
   60% {
-    --timer: 8;
+    --timer: 21;
   }
-  65% {
-    --timer: 7;
+  62% {
+    --timer: 20;
+  }
+  64% {
+    --timer: 19;
+  }
+  66% {
+    --timer: 18;
+  }
+
+  68% {
+    --timer: 17;
   }
   70% {
+    --timer: 16;
+  }
+  72% {
+    --timer: 15;
+  }
+  74% {
+    --timer: 14;
+  }
+  76% {
+    --timer: 13;
+  }
+  78% {
+    --timer: 12;
+  }
+
+  80% {
+    --timer: 11;
+  }
+  82% {
+    --timer: 10;
+  }
+  84% {
+    --timer: 9;
+  }
+  86% {
+    --timer: 8;
+  }
+  88% {
+    --timer: 7;
+  }
+
+  90% {
     --timer: 6;
   }
-  75% {
+  92% {
+    --timer: 6;
+  }
+  94% {
     --timer: 5;
   }
-  80% {
-    --timer: 4;
-  }
-  85% {
+  96% {
     --timer: 3;
   }
-  90% {
-    --timer: 2;
-  }
-  95% {
+  98% {
     --timer: 1;
   }
   100% {
@@ -115,7 +205,7 @@ body {
   line-height: 2rem;
   height: 2rem;
   text-align: center;
-  animation: timer 20s linear;
+  animation: timer 47s linear;
   mix-blend-mode: difference;
   font-size: 1.5rem;
   width: 100%;
@@ -147,7 +237,7 @@ body {
   top: 0;
   left: 0;
   z-index: -1;
-  animation: timeline 20s linear;
+  animation: timeline 47s linear;
   animation-fill-mode: forwards;
 }
 
@@ -194,7 +284,7 @@ body {
   background: rgba(255, 255, 255, 0.9);
   animation: showResults 0.25s linear;
   animation-fill-mode: forwards;
-  animation-delay: 21s;
+  animation-delay: 47s;
   /* z-index: 1; */
 }
 

@@ -280,19 +280,19 @@ btn.addEventListener("click", (e) => {
   }
 
   if (check) {
-    alert("All blocks have the same name");
+    alert("same name");
   } else {
-    alert("Not all blocks have the same name");
+    alert("Not same name");
   }
 });
 
-const timerDiv = document.getElementById("results");
+// let timerDiv = document.getElementById("results");
 
-function changeTimerBackground() {
-  timerDiv.style.backgroundColor = "#00cecb";
-}
+// function changeTimerBackground() {
+//   timerDiv.style.backgroundColor = "red";
+// }
 
-const duration = 5000;
-setTimeout(() => {
-  changeTimerBackground();
-}, duration);
+// const duration = 10000;
+// setTimeout(() => {
+//   changeTimerBackground();
+// }, duration);
