@@ -6,8 +6,10 @@ body {
   cursor: none;
   width: 100%;
   height: 150vh;
-  background-color: #eeeeee;
+  /* background-color: #eeeeee; */
   overflow: hidden;
+  background-color: #ffffea;
+  background-image: url("https://www.transparenttextures.com/patterns/inspiration-geometry.png");
 }
 
 .main-div {
@@ -16,7 +18,7 @@ body {
   align-items: center;
   width: 100%;
   height: 140vh;
-  background-color: #eeeeee;
+  /* background-color: #eeeeee; */
 
   /* background-color: rgb(205, 230, 13); */
 }
@@ -24,7 +26,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #eeeeee;
+  /* background-color: #eeeeee; */
 
   /* height: 140vh; */
 }
@@ -36,4 +38,202 @@ body {
   height: 40vh;
   transform: translate(-50%, 0);
   pointer-events: none;
+  z-index: 1;
+}
+
+/* Game timer + animation */
+@keyframes timer {
+  0% {
+    --timer: 20;
+  }
+  5% {
+    --timer: 19;
+  }
+  10% {
+    --timer: 18;
+  }
+  15% {
+    --timer: 17;
+  }
+  20% {
+    --timer: 16;
+  }
+  25% {
+    --timer: 15;
+  }
+  30% {
+    --timer: 14;
+  }
+  35% {
+    --timer: 13;
+  }
+  40% {
+    --timer: 12;
+  }
+  45% {
+    --timer: 11;
+  }
+  50% {
+    --timer: 10;
+  }
+  55% {
+    --timer: 9;
+  }
+  60% {
+    --timer: 8;
+  }
+  65% {
+    --timer: 7;
+  }
+  70% {
+    --timer: 6;
+  }
+  75% {
+    --timer: 5;
+  }
+  80% {
+    --timer: 4;
+  }
+  85% {
+    --timer: 3;
+  }
+  90% {
+    --timer: 2;
+  }
+  95% {
+    --timer: 1;
+  }
+  100% {
+    --timer: 0;
+  }
+}
+
+#timer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  line-height: 2rem;
+  height: 2rem;
+  text-align: center;
+  animation: timer 20s linear;
+  mix-blend-mode: difference;
+  font-size: 1.5rem;
+  width: 100%;
+  color: white;
+  background: black;
+}
+
+@keyframes timeline {
+  0% {
+    width: 100%;
+    background: green;
+  }
+  50% {
+    width: 50%;
+    brackground: orange;
+  }
+  100% {
+    width: 0%;
+    background: red;
+  }
+}
+
+#timer::before {
+  content: "";
+  width: 100%;
+  background: lightgreen;
+  position: absolute;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  animation: timeline 20s linear;
+  animation-fill-mode: forwards;
+}
+
+#timer::after {
+  counter-reset: timer var(--timer);
+  content: counter(timer);
+  font-weight: bold;
+}
+
+#canvas {
+  width: 100%;
+  height: 100%;
+  transform: rotateX(60deg);
+  transform-style: preserve-3d;
+}
+
+/* input {
+  position: absolute;
+  top: -1000in;
+  left: -1000in;
+} */
+
+@keyframes showResults {
+  from {
+    width: 0;
+    height: 0;
+  }
+  to {
+    width: 100vw;
+    height: 100vh;
+  }
+}
+#results {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.9);
+  animation: showResults 0.25s linear;
+  animation-fill-mode: forwards;
+  animation-delay: 21s;
+  /* z-index: 1; */
+}
+
+#title {
+  transform-origin: top center;
+  color: #eef7ff;
+  transform: rotateX(-60deg) translate(0, 1vmin);
+  background: #369;
+  background: linear-gradient(#369, #123);
+  box-shadow: 0 0 0 1vmin black;
+  padding: 2vmin;
+  font-size: 7vmin;
+  text-align: center;
+}
+
+.btn {
+  display: inline-block;
+  background-color: #ffed66;
+  padding: 15px 40px;
+  border: none;
+  border-radius: 30px;
+  font-family: "Abel", sans-serif;
+  font-size: 20px;
+  text-decoration: none;
+  text-transform: uppercase;
+  color: #ff5e5b;
+  box-shadow: 0 3px 0 #ff5e5b;
+  cursor: pointer;
+  transition: all 100ms linear;
+  margin-top: 30px;
+}
+.btn:hover {
+  -moz-transform: translateY(-4px);
+  -o-transform: translateY(-4px);
+  -ms-transform: translateY(-4px);
+  -webkit-transform: translateY(-4px);
+  transform: translateY(-4px);
+  box-shadow: 0 7px 0 #ff5e5b;
+}
+.btn:focus {
+  outline: 0;
 }

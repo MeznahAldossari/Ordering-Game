@@ -4,7 +4,6 @@ let imagesList = [
   "cup1.png",
   "cup2.png",
   "cup3.png",
-  "cup4.png",
   "cup5.png",
   "cup6.png",
   "cup7.png",
@@ -14,8 +13,11 @@ let imagesList = [
   "cup12.png",
   "cup13.png",
   "cup14.png",
+  "cup15.png",
+  "cup16.png",
+  "cup17.png",
 ];
-
+let arrRect = [];
 function resizeWindow() {
   canvas1.width = window.innerWidth;
   canvas1.height = 700;
@@ -24,6 +26,7 @@ function resizeWindow() {
 let context = canvas1.getContext("2d");
 let arrImages = [];
 let details = [];
+let complete = false;
 
 imagesList.forEach((image) => {
   for (let x = 0; x < 3; x++) {
@@ -34,7 +37,7 @@ arrImages.sort(() => Math.random() - 0.5);
 
 function Box() {
   context.clearRect(0, 0, canvas1.width, canvas1.height);
-
+  // details = [];
   let mainBox = context.createLinearGradient(250, 50, 250, 30 + 460);
   mainBox.addColorStop(0, "#C68D5B");
   mainBox.addColorStop(1, "#B67352");
@@ -50,6 +53,7 @@ function Box() {
   let vertically = 70;
   let horizontally;
 
+  index = 0;
   for (let x = 0; x < 3; x++) {
     horizontally = 298;
 
@@ -77,10 +81,6 @@ function Box() {
 
     vertically += 120 + 25;
   }
-
-  details.forEach((detail) => {
-    drawingImage(detail);
-  });
 }
 
 function BoxColors(h, v, color, gloss) {
@@ -96,6 +96,7 @@ function BoxColors(h, v, color, gloss) {
   gloss1.addColorStop(0.5, gloss);
   gloss1.addColorStop(1, "rgba(255,255,255,0)");
   context.fillStyle = gloss1;
+
   context.fillRect(h, v, 130, 120);
 }
 
@@ -114,14 +115,34 @@ window.addEventListener("resize", () => {
   resizeWindow();
   Box();
 });
+
 addEventListener("mousemove", (event) => {
   mx = event.clientX;
   my = event.clientY;
 
-  // Update the position of the hand image, keeping the cursor at the top
-  handImage.style.left = `${mx + 77}px`;
-  handImage.style.top = `${my - 35}px`;
+  handImage.style.left = `${mx + 73}px`;
+  handImage.style.top = `${my - 42}px`;
 });
+
+// addEventListener("mousedown", (event) => {
+//   mx = event.clientX;
+//   my = event.clientY;
+
+//   handImage.style.left = `${mx + 70}px`;
+//   handImage.style.top = `${my - 41}px`;
+//   handImage.style.width = "15rem";
+//   handImage.style.height = "13rem";
+// });
+
+// addEventListener("mouseup", (event) => {
+//   mx = event.clientX;
+//   my = event.clientY;
+
+//   handImage.style.left = `${mx + 73}px`;
+//   handImage.style.top = `${my - 42}px`;
+//   handImage.style.width = "20vw";
+//   handImage.style.height = "40vh";
+// });
 
 let XAxis;
 let YAxis;
@@ -160,6 +181,14 @@ let handUp = function (event) {
   event.preventDefault();
   if (!dragging) return;
   dragging = false;
+
+  let x = event.offsetX;
+  let y = event.offsetY;
+
+  Box();
+  details.forEach((detail) => {
+    drawingImage(detail);
+  });
 };
 
 let handOut = function (event) {
@@ -167,9 +196,10 @@ let handOut = function (event) {
   if (!dragging) return;
   dragging = false;
 };
-
+let updatedLocation = [];
 let handMove = function (event) {
   if (!dragging) return;
+
   event.preventDefault();
 
   let handX = parseInt(event.clientX);
@@ -180,12 +210,89 @@ let handMove = function (event) {
   let currenImage = details[current];
   currenImage.x += dx;
   currenImage.y += dy;
+
   startX = handX;
   startY = handY;
-  Box();
+  details[current] = { ...currenImage };
+  // updatedLocation = details.map((detail) => ({ ...detail }));
+
+  // console.log(
+  //   "New Location:" +
+  //     updatedLocation[0].names +
+  //     "," +
+  //     "X:" +
+  //     updatedLocation[0].x
+  // );
 };
 
 document.addEventListener("mousedown", handDown);
 document.addEventListener("mouseup", handUp);
 document.addEventListener("mouseout", handOut);
 document.addEventListener("mousemove", handMove);
+
+let btn = document.getElementById("btn2");
+
+btn.addEventListener("click", (e) => {
+  e.preventDefault();
+
+  let imageLocations = [];
+  let uniqueImages = {};
+  details.forEach((detail) => {
+    if (detail.names !== undefined) {
+      uniqueImages[detail.names] = { x: detail.x, y: detail.y };
+    }
+  });
+
+  for (let name in uniqueImages) {
+    imageLocations.push({
+      name: name,
+      x: uniqueImages[name].x,
+      y: uniqueImages[name].y,
+    });
+  }
+  console.log(imageLocations);
+  imageLocations.sort((a, b) => {
+    if (a.x === b.x) {
+      return a.y - b.y;
+    }
+    return a.x - b.x;
+  });
+
+  console.log("firstImage:" + imageLocations[0].name);
+
+  let check = true;
+  for (let i = 0; i < imageLocations.length; i += 3) {
+    if (i + 2 < imageLocations.length) {
+      let fImage = imageLocations[i].name;
+      console.log(`main image: ${fImage}`);
+
+      for (let j = i + 1; j < i + 3; j++) {
+        if (imageLocations[j].name !== fImage) {
+          console.log(`Sup-Image: ${imageLocations[j].name}`);
+          check = false;
+          break;
+        }
+      }
+      if (!check) {
+        break;
+      }
+    }
+  }
+
+  if (check) {
+    alert("All blocks have the same name");
+  } else {
+    alert("Not all blocks have the same name");
+  }
+});
+
+const timerDiv = document.getElementById("results");
+
+function changeTimerBackground() {
+  timerDiv.style.backgroundColor = "#00cecb";
+}
+
+const duration = 5000;
+setTimeout(() => {
+  changeTimerBackground();
+}, duration);

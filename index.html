@@ -3,10 +3,36 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
 
     <title>Game</title>
   </head>
   <body>
-    <a href="./home.html">START</a>
+    <div class="align-center">
+      <h1 class="heading">Brainymo</h1>
+      <p class="desc">Frontend Arsenal Memory Game</p>
+
+      <a class="btn" id="btn-start" href="home.html">Start</a>
+
+      <div class="cards-container">
+        <div class="flip-container hide" id="card-template">
+          <div class="flipper">
+            <div class="front">
+              <label>frontend technologies</label>
+            </div>
+            <div class="back">
+              <label></label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="timer">
+        <label id="minutes"></label>:
+        <label id="seconds"></label>
+        <div class="time">MY BEST TIME: <span id="bestTime"></span></div>
+      </div>
+    </div>
+    <!-- <script src="main2.js"></script> -->
   </body>
 </html>
